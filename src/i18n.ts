@@ -6,7 +6,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   en: {
     translation: {
-      title: "User Form",
+      title: "Input Url",
       name: "Name",
       email: "Email",
       role: "Role",
@@ -22,7 +22,7 @@ const resources = {
   },
   de: {
     translation: {
-      title: "Benutzerformular",
+      title: "Eingabe-URL",
       name: "Name",
       email: "E-Mail",
       role: "Rolle",
@@ -37,8 +37,7 @@ const resources = {
     },
   },
 };
-
-// Initialize i18n
+ 
 i18n
   .use(LanguageDetector) // Automatically detects user's language
   .use(initReactI18next) // Integrates with React

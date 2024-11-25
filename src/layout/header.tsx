@@ -61,11 +61,11 @@ const Header = () => {
     </div> 
         
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-        {/* Form Title */}
-        {/* <Typography variant="h5">{t("title")}</Typography> */}
+      {/* <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+          Form Title  
+          <Typography variant="h5">{t("title")}</Typography>  
 
-        {/* Language Selector */}
+        
         <Select
           value={i18n.language}
           onChange={(e) => handleLanguageChange(e.target.value)}
@@ -76,7 +76,7 @@ const Header = () => {
           <MenuItem value="en">English</MenuItem>
           <MenuItem value="de">Deutsch</MenuItem>
         </Select>
-      </Box>
+      </Box> */}
       <Box>
         <CircleIcon sx={{ color: "#000000", height: "33px", width: "40px" }} />
       </Box>

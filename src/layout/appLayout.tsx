@@ -2,9 +2,7 @@ import { Box } from "@mui/material";
 import React, { ReactNode, useState } from "react";
 import SideBar from "../components/sideBar";
 import Header from "./header";
-interface LayoutProps {
-  children: ReactNode;
-}
+
 const AppLayout = ({
   isAdmin,
   setIsAdmin,
@@ -24,19 +22,18 @@ const AppLayout = ({
           lg: "row",
         },
         color: " #10141F",
-          
+
         overflow: "hidden",
         height: "100vh",
       }}
     >
       <SideBar isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
-      <Box sx={{ width: "100%",
-        display:"flex",
-        flexDirection:"column"
-       }}>
-        <Box><Header/></Box>
-        {children}
+      <Box sx={{ width: "100%", display: "flex", flexDirection: "column" }}>
+        <Box>
+          <Header />
         </Box>
+        {children}
+      </Box>
     </Box>
   );
 };

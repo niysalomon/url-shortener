@@ -8,7 +8,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Useurls from "../../hooks/useAddNewRecord";
 import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { useTranslation } from "react-i18next";
 const UserInputMask = () => {
+  const { t, i18n } = useTranslation();
   const [inputData, setInputDate] = useState<string>("");
   const [openSnak, setOpenSnak] = React.useState(false);
   const {
@@ -69,7 +71,8 @@ const UserInputMask = () => {
             alignItems: "center",
           }}
         >
-          <Typography> Input Url</Typography>
+          {/* <Typography> {String(t('title'))}</Typography> */}
+          <Typography>{String(t('title'))}</Typography>
           <TextField
             sx={{ width: "90%" }}
             onChange={(event) => {

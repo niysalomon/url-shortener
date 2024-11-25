@@ -1,14 +1,10 @@
 import { ThemeProvider } from "@emotion/react";
 import {
   Modal,
-  Box,
-  Typography,
-  TextField,
+  Box, 
   Button,
   createTheme,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close"
-import { stringToNumberFuntion } from "../../util";
+} from "@mui/material"; 
 const theme = createTheme();
 const style = {
   position: "absolute" as "absolute",
