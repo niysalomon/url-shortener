@@ -45,7 +45,7 @@ export const SaveNewRecord = (document: {
   export const saveUrl = (
     url: string,
     ttlInSeconds: number
-  ): Promise<AxiosResponse<UrlResponse>> =>
+  ): Promise<AxiosResponse<UrlList>> =>
     axios.post(
         'https://urlshortener.smef.io/urls',
       { url, ttlInSeconds },

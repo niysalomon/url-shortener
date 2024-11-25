@@ -4,10 +4,29 @@ import Paper from "@mui/material/Paper";
 import { ArrowDownward } from "@mui/icons-material";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Useurls from "../../hooks/useAddNewRecord";
 
 const UserInputMask = () => {
   const [inputData, setInputDate] = useState<string>("");
-  return ( 
+  const {
+    registerNewUrl,
+    ttlInSeconds,
+    setTtlInSeconds,
+    url,
+    setUrl,
+    message,
+    setMessage,
+    messaType,
+    setMessaType,
+    idToRedirect,
+    urlToBeRedirected,
+    loadingUrlToBeRedirected,
+  } = Useurls();
+  const handleRedirect = (url:string) => {  
+    window.open(url, "_blank");  
+  };
+  return (
     <Box sx={{ width: 1, padding: 3 }}>
       <Box
         sx={{
@@ -35,7 +54,7 @@ const UserInputMask = () => {
             sx={{ width: "90%" }}
             onChange={(event) => {
               console.log("======", inputData);
-              setInputDate(event.target.value);
+              setUrl(event.target.value);
             }}
             name="name"
             required
@@ -47,7 +66,13 @@ const UserInputMask = () => {
             gridColumn: "span 2",
           }}
         >
-          <Button sx={{marginTop:3}} variant="outlined">GO</Button>
+          <Button
+            onClick={registerNewUrl}
+            sx={{ marginTop: 3 }}
+            variant="outlined"
+          >
+            GO
+          </Button>
         </Box>
 
         <Box
@@ -78,10 +103,17 @@ const UserInputMask = () => {
             gridColumn: "span 4",
           }}
         >
-          <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <ArrowDownward
-              style={{ height: "120px", width: "70px", cursor: "pointer" }}
-            />
+          <Box
+            
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
+            {loadingUrlToBeRedirected ? (
+              <CircularProgress disableShrink style={{ margin:25 }}/>
+            ) : (
+              <ArrowDownward onClick={registerNewUrl}
+                style={{ height: "120px", width: "70px", cursor: "pointer" }}
+              />
+            )}
           </Box>
         </Box>
         <Box
@@ -129,6 +161,7 @@ const UserInputMask = () => {
             }}
             name="name"
             required
+            value={urlToBeRedirected}
           />
         </Box>
         <Box
@@ -136,14 +169,18 @@ const UserInputMask = () => {
             gridColumn: "span 2",
           }}
         >
-          <Button sx={{marginTop:3}}  variant="outlined">Test</Button>
+          <Button onClick={()=>urlToBeRedirected&&handleRedirect(urlToBeRedirected)} sx={{ marginTop: 3 }} variant="outlined"> 
+            Test
+          </Button>
         </Box>
         <Box
           sx={{
             gridColumn: "span 2",
           }}
         >
-          <Button sx={{marginTop:3}}  variant="outlined">Copy</Button>
+          <Button sx={{ marginTop: 3 }} variant="outlined">
+            Copy
+          </Button>
         </Box>
         <Box
           sx={{
@@ -154,8 +191,6 @@ const UserInputMask = () => {
         </Box>
       </Box>
     </Box>
-
-     
   );
 };
 export default UserInputMask;
