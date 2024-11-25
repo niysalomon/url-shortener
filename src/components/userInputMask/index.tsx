@@ -6,9 +6,11 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Useurls from "../../hooks/useAddNewRecord";
-
+import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 const UserInputMask = () => {
   const [inputData, setInputDate] = useState<string>("");
+  const [openSnak, setOpenSnak] = React.useState(false);
   const {
     registerNewUrl,
     ttlInSeconds,
@@ -25,6 +27,24 @@ const UserInputMask = () => {
   } = Useurls();
   const handleRedirect = (url:string) => {  
     window.open(url, "_blank");  
+  };
+  const handleCopy = async (text:string) => {
+    try {
+      await navigator.clipboard.writeText(text);  
+      setOpenSnak(true)
+    } catch (error) {
+      console.error("Failed to copy text: ", error);
+    }
+  };
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: SnackbarCloseReason,
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenSnak(false);
   };
   return (
     <Box sx={{ width: 1, padding: 3 }}>
@@ -178,7 +198,7 @@ const UserInputMask = () => {
             gridColumn: "span 2",
           }}
         >
-          <Button sx={{ marginTop: 3 }} variant="outlined">
+          <Button onClick={()=>urlToBeRedirected&&handleCopy(urlToBeRedirected)} sx={{ marginTop: 3 }} variant="outlined">
             Copy
           </Button>
         </Box>
@@ -190,6 +210,16 @@ const UserInputMask = () => {
           <Typography></Typography>
         </Box>
       </Box>
+      <Snackbar open={openSnak} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {urlToBeRedirected}{' '} copied!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
