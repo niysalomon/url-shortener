@@ -41,7 +41,7 @@ const Useurls = () => {
     data: mutationDeleteResponse,
     mutate: mutateDelete,
     isLoading: loadingAfterDelete,
-  } = useMutation(["NEW_RECORD"], () => deleteSingleRecord(idToRedirect), {
+  } = useMutation(["URL_FETCHED_LIST"], () => deleteSingleRecord(idToRedirect), {
     onError: (error: {
       response: { data: { message: string; status: string } };
     }) => {

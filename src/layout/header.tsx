@@ -25,8 +25,8 @@ const Header = () => {
         width: "100%",
         borderBottom: "1px solid",
         borderColor: "#bdbdbd",
-        gap: 1,
-        padding: 2,
+        gap: 2,
+        padding:2,
       }}
     >
       <Box>
@@ -38,7 +38,7 @@ const Header = () => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        <DehazeIcon style={{ height: "33px", width: "40px" }} />
+        <DehazeIcon style={{ height: "36px", width: "40px" }} />
       </Button>
       <Menu
         id="demo-positioned-menu"

@@ -1,7 +1,12 @@
 import HomeIcon from "@mui/icons-material/Home";
+import PhotoCameraBackIcon from "@mui/icons-material/PhotoCameraBack";
 import { Box, Hidden, Link, Typography } from "@mui/material";
-const SideBar = ({isAdmin,setIsAdmin}:{
-    isAdmin:string;setIsAdmin:(_value:string)=>void;
+const SideBar = ({
+  isAdmin,
+  setIsAdmin,
+}: {
+  isAdmin: string;
+  setIsAdmin: (_value: string) => void;
 }) => {
   const sideLink = [
     {
@@ -15,13 +20,13 @@ const SideBar = ({isAdmin,setIsAdmin}:{
       link: "admin",
     },
   ];
-  console.log("object",isAdmin);
+  console.log("object", isAdmin);
   return (
     <Box
       sx={{
         backgroundColor: "#e0e0e0",
         display: "flex",
-        
+
         flexDirection: {
           xs: "column",
           lg: "row",
@@ -48,20 +53,31 @@ const SideBar = ({isAdmin,setIsAdmin}:{
           },
           width: "100%",
         }}
-      ><Box sx={{borderBottom: "1px solid",
-      borderColor: "#bdbdbd", width: "100%",}}> 
-        <Hidden smDown>
-          <Typography
-            variant="h5"
-            component="h1" 
-            fontWeight={400}
-            fontSize={18}
-            sx={{padding:3}}
-          >
-            Logo
-          </Typography>
-        </Hidden>
+      >
+        <Box
+          sx={{
+            borderBottom: "1px solid",
+            borderColor: "#bdbdbd",
+            width: "100%",
+            display:"flex",
+            alignItems:"center",
+            paddingBottom:1
+          }}
+        >
+          <Hidden smDown>
+            <Typography
+              variant="h5"
+              component="h1"
+              fontWeight={400}
+              fontSize={18}
+              sx={{ padding: 3 }}
+            >
+              Logo
+            </Typography>
+          </Hidden>
+          <PhotoCameraBackIcon style={{ height: "50px", width: "70px", cursor: "pointer" }}/>
         </Box>
+        
         <Box
           sx={{
             py: {
@@ -83,25 +99,28 @@ const SideBar = ({isAdmin,setIsAdmin}:{
                 borderColor: "#bdbdbd",
                 width: "100%",
               }}
-            > 
-                <Box key={key} onClick={()=>{setIsAdmin(item.link)}}
-                  py={2}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 2,
-                    color: "#10141F",
-                    textDecoration: "none",
-                    paddingTop: "2px",
-                    cursor:"pointer"
-                  }}
-                >
-                  <HomeIcon style={{ width: 18, height: 18 }} />
-                  {/* <img src={HomeIcon} alt="" style={{width:"18px",filter:""}}/> */}
-                  <Hidden mdDown>
-                    <Typography >{item.name}</Typography>
-                  </Hidden>
-                </Box> 
+            >
+              <Box
+                key={key}
+                onClick={() => {
+                  setIsAdmin(item.link);
+                }}
+                py={2}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                  color: "#10141F",
+                  textDecoration: "none",
+                  paddingTop: "2px",
+                  cursor: "pointer",
+                }}
+              >
+                {/* <HomeIcon style={{ width: 18, height: 18 }} />  */}
+                <Box sx={{ marginLeft: 2 }}>
+                  <Typography>{item.name}</Typography>
+                </Box>
+              </Box>
             </Box>
           ))}
         </Box>

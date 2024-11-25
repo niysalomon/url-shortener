@@ -6,7 +6,7 @@ import {
   createTheme,
 } from "@mui/material";
 
-// Define default light and dark themes
+
 const lightTheme = createTheme({
   palette: {
     mode: "light",
@@ -40,7 +40,6 @@ const darkTheme = createTheme({
   },
 });
 
-// Create a ThemeContext to manage light/dark mode toggling
 type ThemeContextType = {
   toggleTheme: () => void;
   isDarkMode: boolean;
@@ -56,7 +55,7 @@ const useThemeMode = () => {
   return context;
 };
 
-// Define global custom styles
+
 const globalStyles = (
   <GlobalStyles
     styles={{

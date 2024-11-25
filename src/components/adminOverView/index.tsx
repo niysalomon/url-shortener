@@ -1,15 +1,17 @@
 import { Box, TextField, Typography } from "@mui/material";
 
 import * as React from "react";
+import { styled } from '@mui/material/styles';
 import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableBody from "@mui/material/TableBody"; 
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import Paper from "@mui/material/Paper";
 import useFetchUrls from "../../hooks/useFetchUrls";
 import { convertStringToString, stringToNumberFuntion } from "../../util";
+import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import CloseIcon from "@mui/icons-material/Close";
@@ -34,6 +36,28 @@ const style = {
   p: 4,  
 };
  
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.white,
+      color: theme.palette.common.black,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
+
+
 
 const AdminOverView = () => {
   const { t } = useTranslation();
@@ -76,25 +100,27 @@ const AdminOverView = () => {
         <TableContainer sx={{ margin: 3, paddingRight: 5 }} component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
-              <TableRow sx={{ fontWeight: "500" }}>
-                <TableCell>
-                  <button onClick={() => setOpenAdd(true)}>Add New</button>
-                </TableCell>
-                <TableCell>ID</TableCell>
-                <TableCell>URL</TableCell>
-                <TableCell>TTL</TableCell>
-                <TableCell>Creation-Date Time</TableCell>
-                <TableCell>Last-Changed-Date Time</TableCell>
-              </TableRow>
+              <StyledTableRow sx={{ fontWeight: "500" }}>
+                <StyledTableCell>
+                <Button onClick={() => setOpenAdd(true)} variant="outlined" startIcon={<AddIcon />}>
+                Add New
+</Button> 
+                </StyledTableCell>
+                <StyledTableCell>ID</StyledTableCell>
+                <StyledTableCell>URL</StyledTableCell>
+                <StyledTableCell>TTL</StyledTableCell>
+                <StyledTableCell>Creation-Date Time</StyledTableCell>
+                <StyledTableCell>Last-Changed-Date Time</StyledTableCell>
+              </StyledTableRow>
             </TableHead>
             <TableBody>
               {urlList &&
                 urlList?.data?.map((item, index) => (
-                  <TableRow
+                  <StyledTableRow 
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell
+                    <StyledTableCell
                       component="th"
                       scope="row"
                       sx={{ display: "flex" }}
@@ -117,19 +143,19 @@ const AdminOverView = () => {
                           }}
                         />
                       </Box>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
                       {item.id}
-                    </TableCell>
-                    <TableCell>{item.url}</TableCell>
-                    <TableCell>{item.ttlInSeconds}</TableCell>
-                    <TableCell>
+                    </StyledTableCell>
+                    <StyledTableCell>{item.url}</StyledTableCell>
+                    <StyledTableCell>{item.ttlInSeconds}</StyledTableCell>
+                    <StyledTableCell>
                       {convertStringToString(item.createdDate)}
-                    </TableCell>
-                    <TableCell>
+                    </StyledTableCell>
+                    <StyledTableCell>
                       {convertStringToString(item.modifiedDate)}
-                    </TableCell>
-                  </TableRow>
+                    </StyledTableCell>
+                  </StyledTableRow>
                 ))}
             </TableBody>
           </Table>

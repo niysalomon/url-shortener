@@ -72,7 +72,7 @@ const UserInputMask = () => {
           }}
         >
           {/* <Typography> {String(t('title'))}</Typography> */}
-          <Typography>{String(t('title'))}</Typography>
+          <Typography>Input Url</Typography>
           <TextField
             sx={{ width: "90%" }}
             onChange={(event) => {
