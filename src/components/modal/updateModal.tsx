@@ -40,13 +40,14 @@ const UpdateModal = ({
   const[url,setUrl]=useState<string>("")
   const[ttlInSeconds,setTtlInSeconds]=useState<number>(0)
   
-  useEffect(()=>{ 
-    refetchSingle();
-    if(singleUrl){
-    setUrl(singleUrl?.data.url);
-    setTtlInSeconds(singleUrl.data.ttlInSeconds);
-    }
-  },[singleUrl])
+  // useEffect(()=>{ 
+  //   refetchSingle();
+  //   if(singleUrl){
+  //     setUrl(singleUrl?.data.url);
+  //     setTtlInSeconds(singleUrl.data.ttlInSeconds);
+  //     }
+  // },[singleUrl])
+  
   console.log("singleUrl==",singleUrl)
   return (<>
    {singleUrl && <ThemeProvider theme={theme}>

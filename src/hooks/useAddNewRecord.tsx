@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { saveUrl } from "../service";
+import { deleteSingleRecord, saveUrl } from "../service";
 import { useState } from "react";
 
 const Useurls = () => {
@@ -9,19 +9,52 @@ const Useurls = () => {
   const [messaType, setMessaType] = useState<string>("");
   const [idToRedirect, setIdToRedirect] = useState<string>("");
   const [urlToBeRedirected, setUrlToBeRedirected] = useState<string>("");
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [openDelete, setOpenDelete] = useState<boolean>(false);
+  const [openAdd, setOpenAdd] = useState<boolean>(false);
   const {
     data: mutationResponse,
     mutate: mutateAdd,
     isLoading: loadingUrlToBeRedirected,
-  } = useMutation(["NEW_RECORD"], () => saveUrl(url, ttlInSeconds), {
+  } = useMutation(["URL_FETCHED_LIST"], () => saveUrl(url, ttlInSeconds), {
+    onError: (error: {
+      response: { data: { message: string; status: string } };
+ 
+       
+    }) => {
+        setOpenAdd(false);
+        setMessage("sorry! fail to delete please try again");
+        setIsSuccess(true)
+    },
+    onSuccess: (data) => {
+      console.log("====>", data);
+      setOpenAdd(false);
+      setIdToRedirect(data.data.id);
+      setUrlToBeRedirected(`https://urlshortener.smef.io/${data.data.id}`);
+       setMessage("The record added successful!");
+        setIsSuccess(true)
+    },
+  });
+
+  console.log("====idToRedirect", idToRedirect);
+  const {
+    data: mutationDeleteResponse,
+    mutate: mutateDelete,
+    isLoading: loadingAfterDelete,
+  } = useMutation(["NEW_RECORD"], () => deleteSingleRecord(idToRedirect), {
     onError: (error: {
       response: { data: { message: string; status: string } };
     }) => {
+        setOpenDelete(false)
+        setMessage("sorry! fail to delete please try again");
+        setIsSuccess(true)
       alert(error);
     },
-    onSuccess: (data) => { 
+    onSuccess: (data) => {
+        setMessage("The record deleted successful!");
+        setIsSuccess(true);
+        setOpenDelete(false)
       console.log("====>", data);
-      setIdToRedirect(data.data.id);
       setUrlToBeRedirected(`https://urlshortener.smef.io/${data.data.id}`);
 
       setTimeout(() => {
@@ -29,8 +62,12 @@ const Useurls = () => {
       }, 100);
     },
   });
+
   const registerNewUrl = () => {
     mutateAdd();
+  };
+  const deleteRecord = () => {
+    mutateDelete();
   };
 
   console.log("url==", url);
@@ -48,6 +85,12 @@ const Useurls = () => {
     idToRedirect,
     urlToBeRedirected,
     loadingUrlToBeRedirected,
+    setIdToRedirect,
+    deleteRecord,
+    isSuccess,
+    setIsSuccess,
+    openDelete, setOpenDelete,
+    openAdd, setOpenAdd,
   };
 };
 export default Useurls;

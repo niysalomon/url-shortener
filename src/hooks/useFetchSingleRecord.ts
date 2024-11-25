@@ -9,8 +9,12 @@ const useFetchSingleUrl = (id:string) => {
       data: singleUrl, 
       refetch:refetchSingle,
     } = useQuery(
-      ['URL_FETCHED'],
+      ['URL_FETCHED_LIST'],
       () => getSingleRecord(id), 
+      {
+        enabled: false,
+        refetchOnWindowFocus: false,
+    },
     );
   
     return {
