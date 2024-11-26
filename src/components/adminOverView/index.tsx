@@ -89,6 +89,7 @@ const AdminOverView = () => {
     setOpenDelete,
     openAdd,
     setOpenAdd,
+    mutateUpdate,
   } = Useurls();
   const handleClose = () => setOpenAdd(false);
 
@@ -130,6 +131,9 @@ const AdminOverView = () => {
                           onClick={() => {
                             setOpenEdit(true);
                             setRecordId(item.id);
+                            setIdToRedirect(item.id)
+                            setUrl(item.url)
+                            setTtlInSeconds(item.ttlInSeconds)
                           }}
                         />
                       </Box>
@@ -234,6 +238,12 @@ const AdminOverView = () => {
               isOpen={openEdit}
               setIsOpen={setOpenEdit}
               recordId={recordId}
+              url={url}
+              setUrl={setUrl}
+              ttlInSeconds={ttlInSeconds}
+              setTtlInSeconds={setTtlInSeconds}
+              mutateUpdate={mutateUpdate}
+              
             />
           )}
           <ConfirmModal

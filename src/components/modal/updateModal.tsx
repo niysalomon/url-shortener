@@ -21,24 +21,32 @@ const style = {
   bgcolor: "background.paper",
   boxShadow: 24,
   borderRadius: 2,
-  p: 4, // Padding
+  p: 4,  
 };
 const UpdateModal = ({
   isOpen,
   setIsOpen,
   recordId,
+  ttlInSeconds,
+url,
+setTtlInSeconds,
+setUrl,
+mutateUpdate,
 }: {
   isOpen: boolean;
   setIsOpen: (_value: boolean) => void;
   recordId: string;
+  ttlInSeconds:number;
+  setTtlInSeconds:(_value:number)=>void;
+url:string;
+setUrl:(_value:string)=>void;
+mutateUpdate:()=>void;
 }) => {
   const handleClose = () => {
     setIsOpen(false);
   };
   const { singleUrl,refetchSingle } = useFetchSingleUrl(recordId);
-  const[id,setId]=useState<string>("")
-  const[url,setUrl]=useState<string>("")
-  const[ttlInSeconds,setTtlInSeconds]=useState<number>(0)
+   
   
   // useEffect(()=>{ 
   //   refetchSingle();
@@ -47,8 +55,7 @@ const UpdateModal = ({
   //     setTtlInSeconds(singleUrl.data.ttlInSeconds);
   //     }
   // },[singleUrl])
-  
-  console.log("singleUrl==",singleUrl)
+   
   return (<>
    {singleUrl && <ThemeProvider theme={theme}>
       <Modal
@@ -87,7 +94,7 @@ const UpdateModal = ({
               fullWidth
             />
             <Typography id="modal-title" component="h2">
-              Second
+              Second {/* {t("seconds")} */}
             </Typography>
             <TextField
               sx={{ width: "100%" }}
@@ -109,10 +116,10 @@ const UpdateModal = ({
             <Button
               variant="outlined"
               color="success"
-              //   onClick={registerNewUrl}
+                onClick={mutateUpdate}
               sx={{ mt: 2 }}
             >
-              SAVE
+              UPDATE
               {/* {t("submit")} */}
             </Button>
           </Box>

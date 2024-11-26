@@ -55,6 +55,24 @@ export const saveUrl = (
     }
   );
 
+  export const updateExistingUrl = (
+    id: string,
+    url: string,
+    ttlInSeconds: number
+  ): Promise<AxiosResponse<UrlList>> =>
+    axios.put(  
+      `https://urlshortener.smef.io/urls/${id}`,  
+      {
+        url,  
+        ttlInSeconds,  
+      },
+      {
+        headers: {
+          Authorization: `Basic ${encodedCredentials}`, // Include your credentials
+          "Content-Type": "application/json", // Ensure proper content type
+        },
+      }
+    );
 export const getSingleRecord = async (
   id: string
 ): Promise<AxiosResponse<UrlList>> => {

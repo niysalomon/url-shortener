@@ -1,6 +1,4 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
+import * as React from "react"; 
 import { ArrowDownward } from "@mui/icons-material";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
@@ -82,6 +80,7 @@ const UserInputMask = () => {
             name="name"
             required
             fullWidth
+            placeholder="Enter url here"
           />
         </Box>
         <Box
@@ -90,7 +89,7 @@ const UserInputMask = () => {
           }}
         >
           <Button
-            onClick={registerNewUrl}
+            onClick={()=>url && registerNewUrl()}
             sx={{ marginTop: 3 }}
             variant="outlined"
           >
@@ -133,7 +132,7 @@ const UserInputMask = () => {
             {loadingUrlToBeRedirected ? (
               <CircularProgress disableShrink style={{ margin:25 }}/>
             ) : (
-              <ArrowDownward onClick={registerNewUrl}
+              <ArrowDownward  onClick={()=>url && registerNewUrl()}
                 style={{ height: "120px", width: "70px", cursor: "pointer" }}
               />
             )}
@@ -184,6 +183,7 @@ const UserInputMask = () => {
             }}
             name="name"
             required
+            placeholder="Output url here "
             value={urlToBeRedirected}
           />
         </Box>
