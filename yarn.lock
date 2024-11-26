@@ -4277,6 +4277,11 @@ dotenv@^10.0.0:
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-10.0.0.tgz"
   integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
 
+dotenv@^16.4.5:
+  version "16.4.5"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
+  integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
+
 duplexer@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/duplexer/-/duplexer-0.1.2.tgz"
@@ -5587,13 +5592,6 @@ i18next-browser-languagedetector@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-8.0.0.tgz#b6fdd9b43af67c47f2c26c9ba27710a1eaf31e2f"
   integrity sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==
-  dependencies:
-    "@babel/runtime" "^7.23.2"
-
-i18next@^24.0.0:
-  version "24.0.0"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-24.0.0.tgz#26c80a064da655013acfca2d750bdf7a342860bb"
-  integrity sha512-ORGCwMrXxpmB/AljFbGEe0UK/9Pz6umb9aZgLZ9qJGE+kjKhlnLj423WX2mt+N0MlEJ78pQXFMBmeMzrkLxriQ==
   dependencies:
     "@babel/runtime" "^7.23.2"
 
@@ -9779,7 +9777,7 @@ url-parse@^1.5.3:
     "@types/react" "^18.3.12"
     "@types/react-dom" "^18.3.1"
     axios "^1.7.7"
-    i18next "^24.0.0"
+    i18next "^24.0.2"
     i18next-browser-languagedetector "^8.0.0"
     react "^18.3.1"
     react-dom "^18.3.1"
@@ -9787,7 +9785,7 @@ url-parse@^1.5.3:
     react-router "6"
     react-scripts "5.0.1"
     typescript "^4.9.5"
-    url-shortener "file:C:/Users/HP/AppData/Local/Yarn/Cache/v6/npm-url-shortener-0.1.0-b85ba619-8d37-4319-847a-a4b4d5c97f2e-1732544446292/node_modules/url-shortener"
+    url-shortener "file:C:/Users/HP/AppData/Local/Yarn/Cache/v6/npm-url-shortener-0.1.0-29e1bec6-ed66-4349-baf1-97b28ca8094c-1732606780526/node_modules/url-shortener"
     web-vitals "^2.1.4"
 
 use-sync-external-store@^1.2.0:
